@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Steam Store Redesign</title>
+    <title>Steam Store with Friend Search</title>
     <style>
         body {
             margin: 0;
@@ -12,7 +12,6 @@
             color: #c7d5e0;
         }
 
-        /* Header */
         .header {
             display: flex;
             justify-content: space-between;
@@ -47,120 +46,91 @@
             font-size: 16px;
         }
 
-        /* Main Content */
-        .main-content {
+        .content {
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 70px);
             margin-top: 70px;
+        }
+
+        /* Iframe style for Steam */
+        .steam-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Friend search overlay */
+        .friend-search-overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
             padding: 20px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .game-carousel {
-            display: flex;
-            overflow-x: auto;
-            gap: 20px;
-            padding: 20px 0;
-        }
-
-        .game-carousel img {
-            width: 300px;
-            height: 150px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            color: #fff;
+            z-index: 1001;
         }
 
-        /* Friend Suggestions Section */
-        .friend-suggestions {
-            margin-top: 40px;
+        .friend-search-overlay input {
+            width: 200px;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
         }
 
-        .suggested-friend {
-            background-color: #2a475e;
-            border-radius: 10px;
-            padding: 15px;
-            width: 300px;
-            display: flex;
-            align-items: center;
-            color: #c7d5e0;
-            margin-bottom: 20px;
-        }
-
-        .suggested-friend img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            margin-right: 15px;
-        }
-
-        .friend-info {
-            flex-grow: 1;
-        }
-
-        .friend-info h3 {
-            margin: 0;
-        }
-
-        .friend-info p {
-            margin: 5px 0 0;
+        .friend-search-overlay button {
+            padding: 10px;
+            background-color: #66c0f4;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
+
     <!-- Header -->
     <div class="header">
         <h1>Steam Store</h1>
-        <!-- Friend Search Bar -->
         <input type="text" class="search-bar" placeholder="Search for friends by username or Steam ID...">
         <button class="add-friend-btn">Add Friend</button>
     </div>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- Game Carousel Section -->
-        <h2>Featured Games</h2>
-        <div class="game-carousel">
-            <img src="https://via.placeholder.com/300x150.png?text=Game+1" alt="Game 1">
-            <img src="https://via.placeholder.com/300x150.png?text=Game+2" alt="Game 2">
-            <img src="https://via.placeholder.com/300x150.png?text=Game+3" alt="Game 3">
-            <img src="https://via.placeholder.com/300x150.png?text=Game+4" alt="Game 4">
-        </div>
+    <!-- Content Section with Steam Iframe and Friend Search Overlay -->
+    <div class="content">
+        <!-- Steam Store Iframe -->
+        <iframe src="https://store.steampowered.com/" class="steam-iframe"></iframe>
 
-        <!-- Friend Suggestions Section -->
-        <div class="friend-suggestions">
-            <h2>Suggested Friends</h2>
-            <div class="suggested-friend">
-                <img src="/mnt/data/A_Yankees_baseball_cap_on_a_neutral_background,_st.png" alt="Yankees Cap">
-                <div class="friend-info">
-                    <h3>Gamer123</h3>
-                    <p>Plays the same game</p>
-                </div>
-            </div>
-
-            <div class="suggested-friend">
-                <img src="/mnt/data/A_grizzly_bear_on_a_neutral_background,_styled_to_.png" alt="Grizzly Bear">
-                <div class="friend-info">
-                    <h3>ProGamer88</h3>
-                    <p>Friends with [Mutual Friend]</p>
-                </div>
-            </div>
-
-            <div class="suggested-friend">
-                <img src="/mnt/data/The_number_1_on_a_neutral_background,_styled_to_be.png" alt="Number 1">
-                <div class="friend-info">
-                    <h3>PlayerOne</h3>
-                    <p>Plays the same game</p>
-                </div>
-            </div>
-
-            <div class="suggested-friend">
-                <img src="/mnt/data/A_spartan_warrior_helmet_on_a_neutral_background,_.png" alt="Spartan Helmet">
-                <div class="friend-info">
-                    <h3>BestGamer</h3>
-                    <p>Friends with [Mutual Friend]</p>
-                </div>
-            </div>
+        <!-- Friend Search Overlay -->
+        <div class="friend-search-overlay">
+            <h2>Find a Friend</h2>
+            <input type="text" id="friend-search-input" placeholder="Enter Steam ID or username...">
+            <button id="friend-search-btn">Search</button>
+            <div id="friend-search-result"></div>
         </div>
     </div>
+
+    <script>
+        // Friend Search Functionality
+        document.getElementById('friend-search-btn').addEventListener('click', function() {
+            const friendName = document.getElementById('friend-search-input').value;
+            const resultDiv = document.getElementById('friend-search-result');
+            
+            if (friendName === "") {
+                resultDiv.innerHTML = "Please enter a valid friend name.";
+                return;
+            }
+
+            // Ideally, you'd integrate Steam API here to search friends dynamically
+            resultDiv.innerHTML = `Searching for "${friendName}"...`;
+
+            // Simulate a friend search result
+            setTimeout(() => {
+                resultDiv.innerHTML = `<p>Friend request sent to ${friendName}!</p>`;
+            }, 2000);
+        });
+    </script>
 </body>
 </html>
