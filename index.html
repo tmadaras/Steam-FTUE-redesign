@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steam FTUE Redesign Prototype</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1b2838;
+            color: #c7d5e0;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #171a21;
+            box-shadow: 0px 4px 2px -2px gray;
+        }
+
+        .header h1 {
+            color: #66c0f4;
+            margin: 0;
+        }
+
+        .add-friend-btn {
+            background-color: #66c0f4;
+            border: none;
+            color: #ffffff;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #2a475e;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 70px;
+        }
+
+        .sidebar h2 {
+            color: #66c0f4;
+            padding: 10px 15px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 10px 15px;
+            border-bottom: 1px solid #1b2838;
+            cursor: pointer;
+            color: #c7d5e0;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #171a21;
+        }
+
+        /* Content */
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #c7d5e0;
+            margin-bottom: 20px;
+        }
+
+        .friend-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .suggested-friend {
+            background-color: #2a475e;
+            border-radius: 10px;
+            padding: 15px;
+            width: 300px;
+            display: flex;
+            align-items: center;
+            color: #c7d5e0;
+        }
+
+        .suggested-friend img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .friend-info {
+            flex-grow: 1;
+        }
+
+        .friend-info h3 {
+            margin: 0;
+        }
+
+        .friend-info p {
+            margin: 5px 0 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>Steam</h1>
+        <button class="add-friend-btn">Add Friend</button>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Friends & Chat</h2>
+        <ul>
+            <li>Chat</li>
+            <li>Friend Activity</li>
+            <li>Friend Requests</li>
+            <li>Suggested Friends</li>
+        </ul>
+    </div>
+
+    <!-- Content Area -->
+    <div class="content">
+        <!-- Friend Search Bar -->
+        <input type="text" class="search-bar" placeholder="Search for friends by username or Steam ID...">
+
+        <!-- Suggested Friends Section -->
+        <h2>Suggested Friends</h2>
+        <div class="friend-suggestions">
+            <!-- Example Friend Cards -->
+            <div class="suggested-friend">
+                <img src="https://via.placeholder.com/60" alt="Profile Picture">
+                <div class="friend-info">
+                    <h3>Gamer123</h3>
+                    <p>Plays the same game</p>
+                </div>
+            </div>
+
+            <div class="suggested-friend">
+                <img src="https://via.placeholder.com/60" alt="Profile Picture">
+                <div class="friend-info">
+                    <h3>ProGamer88</h3>
+                    <p>Friends with [Mutual Friend]</p>
+                </div>
+            </div>
+
+            <div class="suggested-friend">
+                <img src="https://via.placeholder.com/60" alt="Profile Picture">
+                <div class="friend-info">
+                    <h3>PlayerOne</h3>
+                    <p>Plays the same game</p>
+                </div>
+            </div>
+
+            <div class="suggested-friend">
+                <img src="https://via.placeholder.com/60" alt="Profile Picture">
+                <div class="friend-info">
+                    <h3>BestGamer</h3>
+                    <p>Friends with [Mutual Friend]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
