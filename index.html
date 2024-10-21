@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Steam FTUE Redesign Prototype</title>
+    <title>Steam Store Redesign</title>
     <style>
         body {
             margin: 0;
@@ -20,11 +20,21 @@
             padding: 10px 20px;
             background-color: #171a21;
             box-shadow: 0px 4px 2px -2px gray;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
         }
 
         .header h1 {
             color: #66c0f4;
             margin: 0;
+        }
+
+        .search-bar {
+            width: 300px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #c7d5e0;
         }
 
         .add-friend-btn {
@@ -37,56 +47,32 @@
             font-size: 16px;
         }
 
-        /* Sidebar */
-        .sidebar {
-            width: 250px;
-            background-color: #2a475e;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            padding-top: 70px;
-        }
-
-        .sidebar h2 {
-            color: #66c0f4;
-            padding: 10px 15px;
-        }
-
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .sidebar ul li {
-            padding: 10px 15px;
-            border-bottom: 1px solid #1b2838;
-            cursor: pointer;
-            color: #c7d5e0;
-        }
-
-        .sidebar ul li:hover {
-            background-color: #171a21;
-        }
-
-        /* Content */
-        .content {
-            margin-left: 250px;
+        /* Main Content */
+        .main-content {
+            margin-top: 70px;
             padding: 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .search-bar {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #c7d5e0;
-            margin-bottom: 20px;
-        }
-
-        .friend-suggestions {
+        .game-carousel {
             display: flex;
-            flex-wrap: wrap;
+            overflow-x: auto;
             gap: 20px;
+            padding: 20px 0;
+        }
+
+        .game-carousel img {
+            width: 300px;
+            height: 150px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Friend Suggestions Section */
+        .friend-suggestions {
+            margin-top: 40px;
         }
 
         .suggested-friend {
@@ -97,6 +83,7 @@
             display: flex;
             align-items: center;
             color: #c7d5e0;
+            margin-bottom: 20px;
         }
 
         .suggested-friend img {
@@ -122,32 +109,28 @@
 <body>
     <!-- Header -->
     <div class="header">
-        <h1>Steam</h1>
+        <h1>Steam Store</h1>
+        <!-- Friend Search Bar -->
+        <input type="text" class="search-bar" placeholder="Search for friends by username or Steam ID...">
         <button class="add-friend-btn">Add Friend</button>
     </div>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <h2>Friends & Chat</h2>
-        <ul>
-            <li>Chat</li>
-            <li>Friend Activity</li>
-            <li>Friend Requests</li>
-            <li>Suggested Friends</li>
-        </ul>
-    </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Game Carousel Section -->
+        <h2>Featured Games</h2>
+        <div class="game-carousel">
+            <img src="https://via.placeholder.com/300x150.png?text=Game+1" alt="Game 1">
+            <img src="https://via.placeholder.com/300x150.png?text=Game+2" alt="Game 2">
+            <img src="https://via.placeholder.com/300x150.png?text=Game+3" alt="Game 3">
+            <img src="https://via.placeholder.com/300x150.png?text=Game+4" alt="Game 4">
+        </div>
 
-    <!-- Content Area -->
-    <div class="content">
-        <!-- Friend Search Bar -->
-        <input type="text" class="search-bar" placeholder="Search for friends by username or Steam ID...">
-
-        <!-- Suggested Friends Section -->
-        <h2>Suggested Friends</h2>
+        <!-- Friend Suggestions Section -->
         <div class="friend-suggestions">
-            <!-- Example Friend Cards -->
+            <h2>Suggested Friends</h2>
             <div class="suggested-friend">
-                <img src="https://via.placeholder.com/60" alt="Profile Picture">
+                <img src="/mnt/data/A_Yankees_baseball_cap_on_a_neutral_background,_st.png" alt="Yankees Cap">
                 <div class="friend-info">
                     <h3>Gamer123</h3>
                     <p>Plays the same game</p>
@@ -155,7 +138,7 @@
             </div>
 
             <div class="suggested-friend">
-                <img src="https://via.placeholder.com/60" alt="Profile Picture">
+                <img src="/mnt/data/A_grizzly_bear_on_a_neutral_background,_styled_to_.png" alt="Grizzly Bear">
                 <div class="friend-info">
                     <h3>ProGamer88</h3>
                     <p>Friends with [Mutual Friend]</p>
@@ -163,7 +146,7 @@
             </div>
 
             <div class="suggested-friend">
-                <img src="https://via.placeholder.com/60" alt="Profile Picture">
+                <img src="/mnt/data/The_number_1_on_a_neutral_background,_styled_to_be.png" alt="Number 1">
                 <div class="friend-info">
                     <h3>PlayerOne</h3>
                     <p>Plays the same game</p>
@@ -171,7 +154,7 @@
             </div>
 
             <div class="suggested-friend">
-                <img src="https://via.placeholder.com/60" alt="Profile Picture">
+                <img src="/mnt/data/A_spartan_warrior_helmet_on_a_neutral_background,_.png" alt="Spartan Helmet">
                 <div class="friend-info">
                     <h3>BestGamer</h3>
                     <p>Friends with [Mutual Friend]</p>
