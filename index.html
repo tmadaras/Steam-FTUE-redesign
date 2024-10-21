@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Steam Store - Friend Search</title>
+    <title>Steam Store - Friend Search & Profile</title>
     <style>
         body {
             margin: 0;
@@ -43,6 +43,34 @@
             padding: 20px;
         }
 
+        /* Profile Section */
+        .profile-section {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .profile-section img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .profile-info {
+            margin-left: 20px;
+        }
+
+        .profile-info p {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .copy-message {
+            color: #66c0f4;
+            display: none;
+        }
+
         /* Friend Search */
         .friend-search {
             margin: 20px 0;
@@ -70,6 +98,30 @@
         .search-results {
             margin-top: 20px;
         }
+
+        /* Quick Search Bar */
+        .quick-search {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+        }
+
+        .quick-search input {
+            width: 350px;
+            padding: 10px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .quick-search button {
+            padding: 10px 20px;
+            background-color: #66c0f4;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -82,6 +134,23 @@
 
     <!-- Main Content -->
     <div class="main-content">
+        <!-- Profile Section with Friend Code Copy -->
+        <div class="profile-section">
+            <img src="https://via.placeholder.com/100" alt="Profile Picture" id="profile-pic" title="Click to copy friend code">
+            <div class="profile-info">
+                <p>Player Name: <strong>MyProfile123</strong></p>
+                <p>Friend Code: <strong id="friend-code">1234-5678-9012</strong></p>
+                <p class="copy-message" id="copy-message">Friend Code Copied!</p>
+            </div>
+        </div>
+
+        <!-- Quick Search Bar for Friends -->
+        <div class="quick-search">
+            <h2>Quick Friend Search</h2>
+            <input type="text" id="quick-search-input" placeholder="Search for friends...">
+            <button id="quick-search-btn">Find Friend</button>
+        </div>
+
         <!-- Friend Search Section -->
         <div class="friend-search">
             <h2>Find a Friend</h2>
@@ -89,12 +158,23 @@
             <button id="friend-search-btn">Search</button>
             <div id="search-results" class="search-results"></div>
         </div>
-
-        <!-- Add more content as needed from your Figma design -->
     </div>
 
     <script>
-        // Friend Search Functionality
+        // Copy friend code to clipboard on profile picture click
+        document.getElementById('profile-pic').addEventListener('click', function() {
+            const friendCode = document.getElementById('friend-code').innerText;
+            navigator.clipboard.writeText(friendCode).then(() => {
+                document.getElementById('copy-message').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('copy-message').style.display = 'none';
+                }, 2000);
+            }).catch(err => {
+                console.log('Failed to copy: ', err);
+            });
+        });
+
+        // Friend Search Functionality (Simulated for now)
         document.getElementById('friend-search-btn').addEventListener('click', function() {
             const friendName = document.getElementById('friend-search-input').value;
             const resultDiv = document.getElementById('search-results');
@@ -111,7 +191,18 @@
                 resultDiv.innerHTML = `<p>Friend request sent to ${friendName}!</p>`;
             }, 2000);
         });
+
+        // Quick Friend Search Redirection
+        document.getElementById('quick-search-btn').addEventListener('click', function() {
+            const searchValue = document.getElementById('quick-search-input').value;
+            if (searchValue !== "") {
+                window.location.href = `friend-finder.html?search=${searchValue}`; // Redirect to the finder page
+            } else {
+                alert("Please enter a name or friend code to search!");
+            }
+        });
     </script>
 
 </body>
 </html>
+
