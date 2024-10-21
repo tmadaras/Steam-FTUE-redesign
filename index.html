@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Steam Store with Friend Search</title>
+    <title>Steam Store - Friend Search</title>
     <style>
         body {
             margin: 0;
@@ -12,80 +12,63 @@
             color: #c7d5e0;
         }
 
+        /* Header */
         .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
             background-color: #171a21;
+            height: 104px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
             box-shadow: 0px 4px 2px -2px gray;
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
         }
 
-        .header h1 {
-            color: #66c0f4;
-            margin: 0;
+        .header img {
+            width: 176px;
+            height: 44px;
         }
 
-        .search-bar {
-            width: 300px;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #c7d5e0;
-        }
-
-        .add-friend-btn {
-            background-color: #66c0f4;
-            border: none;
-            color: #ffffff;
+        .install-steam {
+            background-color: #5b8f23;
             padding: 10px 20px;
-            cursor: pointer;
+            color: white;
+            text-decoration: none;
             border-radius: 5px;
-            font-size: 16px;
         }
 
-        .content {
-            position: relative;
-            width: 100%;
-            height: calc(100vh - 70px);
-            margin-top: 70px;
-        }
-
-        /* Iframe style for Steam */
-        .steam-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Friend search overlay */
-        .friend-search-overlay {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background-color: rgba(0, 0, 0, 0.8);
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
-            border-radius: 10px;
-            color: #fff;
-            z-index: 1001;
         }
 
-        .friend-search-overlay input {
-            width: 200px;
+        /* Friend Search */
+        .friend-search {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+        }
+
+        .friend-search input {
+            width: 250px;
             padding: 10px;
             border-radius: 5px;
-            margin-bottom: 10px;
+            margin-right: 10px;
         }
 
-        .friend-search-overlay button {
-            padding: 10px;
+        .friend-search button {
+            padding: 10px 20px;
             background-color: #66c0f4;
             border: none;
             color: white;
             cursor: pointer;
             border-radius: 5px;
+        }
+
+        .search-results {
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -93,44 +76,42 @@
 
     <!-- Header -->
     <div class="header">
-        <h1>Steam Store</h1>
-        <input type="text" class="search-bar" placeholder="Search for friends by username or Steam ID...">
-        <button class="add-friend-btn">Add Friend</button>
+        <img src="https://store.steamstatic.com/public/shared/images/header/logo_steam.svg?t=962016" alt="Steam Logo">
+        <a href="#" class="install-steam">Install Steam</a>
     </div>
 
-    <!-- Content Section with Steam Iframe and Friend Search Overlay -->
-    <div class="content">
-        <!-- Steam Store Iframe -->
-        <iframe src="https://store.steampowered.com/" class="steam-iframe"></iframe>
-
-        <!-- Friend Search Overlay -->
-        <div class="friend-search-overlay">
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Friend Search Section -->
+        <div class="friend-search">
             <h2>Find a Friend</h2>
-            <input type="text" id="friend-search-input" placeholder="Enter Steam ID or username...">
+            <input type="text" id="friend-search-input" placeholder="Enter Steam ID or Username...">
             <button id="friend-search-btn">Search</button>
-            <div id="friend-search-result"></div>
+            <div id="search-results" class="search-results"></div>
         </div>
+
+        <!-- Add more content as needed from your Figma design -->
     </div>
 
     <script>
         // Friend Search Functionality
         document.getElementById('friend-search-btn').addEventListener('click', function() {
             const friendName = document.getElementById('friend-search-input').value;
-            const resultDiv = document.getElementById('friend-search-result');
+            const resultDiv = document.getElementById('search-results');
             
             if (friendName === "") {
                 resultDiv.innerHTML = "Please enter a valid friend name.";
                 return;
             }
 
-            // Ideally, you'd integrate Steam API here to search friends dynamically
             resultDiv.innerHTML = `Searching for "${friendName}"...`;
 
-            // Simulate a friend search result
+            // Simulate search result
             setTimeout(() => {
                 resultDiv.innerHTML = `<p>Friend request sent to ${friendName}!</p>`;
             }, 2000);
         });
     </script>
+
 </body>
 </html>
